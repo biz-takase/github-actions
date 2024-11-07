@@ -1,0 +1,15 @@
+# yaml形式でgithub-actionの記述
+# yaml のインデントは基本スペース: 2
+
+name: backend
+
+on:
+  push: 
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - echo hello world
