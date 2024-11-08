@@ -31,6 +31,6 @@ jobs:
           retention-days: 5
       - uses: actions/upload-artifact@v3
         with:
-          name: coverage
+          name: dist
           path: backend/dist/index.js
           retention-days: 5
