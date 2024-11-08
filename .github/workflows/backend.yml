@@ -9,7 +9,7 @@ on:
       - master
   schedule:
     # 日本時間で毎晩21時に実行
-    - cron: '25 6 * * *'
+    - cron: '27 6 * * *'
 
 defaults:
   run:
