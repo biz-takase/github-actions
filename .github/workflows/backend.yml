@@ -25,6 +25,8 @@ jobs:
       - run: npm run build
 
       - uses: actions/upload-artifact@v3
+        # ステップが失敗しても実行
+        if: always()
         with:
           name: coverage
           path: backend/coverage/**
