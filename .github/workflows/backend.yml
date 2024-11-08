@@ -7,9 +7,10 @@ on:
   push: 
     branches:
       - master
-  schedule:
-    # 日本時間で毎晩21時に実行
-    - cron: '27 6 * * *'
+  # schedule:
+    # 日本時間で毎晩15時27分に実行
+    # UTCなので、+9時間で計算
+    # - cron: '27 6 * * *'
 
 defaults:
   run:

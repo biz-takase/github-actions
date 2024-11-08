@@ -1,3 +1,8 @@
+
+# workflow のステータスバッジ
+workflow: backend status badge
+[![backend](https://github.com/biz-takase/github-actions/actions/workflows/backend.yml/badge.svg)](https://github.com/biz-takase/github-actions/actions/workflows/backend.yml)
+
 # サンプルアプリケーション
 
 静的なフロントエンドと Web API から成る、足し算アプリケーションです。
