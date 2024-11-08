@@ -30,7 +30,8 @@ jobs:
       # buildでトランスコンパイルし、コンパイルされたjsをバックグラウンド実行
       - run: node dist/index.js &
       # node が起動しているかチェックするため、wait-on パッケージを使用する
-      - run: npx wait-on -t 10000 http://localhost:8080/api/health
+      # アドホックで実行し、パッケージバージョンを指定
+      - run: npx wait-on@7.0.1 -t 10000 http://localhost:8080/api/health
       # Step CI の実行
       - run: npm run stepci
 
