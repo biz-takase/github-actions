@@ -7,6 +7,9 @@ on:
   push: 
     branches:
       - master
+  schedule:
+    # 日本時間で毎晩21時に実行
+    - cron: '23 6 * * *'
 
 defaults:
   run:
