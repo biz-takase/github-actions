@@ -71,7 +71,7 @@ jobs:
       # ファイルアップロードのコマンド
       # ランナーからscpでサーバーにファイルアップロード
       # - run: ssh ${SERVER_USER}@${SERVER_IP} scp /home/runner/work/github-actions/github-actions/backend/dist/index.js ${SERVER_USER}@${SERVER_IP}:/home/ubuntu/src
-      - run: rsync -v dist/index.js ${SERVER_USER}@${SERVER_IP}:~src/index.js 
+      - run: scp dist/index.js ${SERVER_USER}@${SERVER_IP}:~/src/index.js
       # サービスリスタート
       - run: ssh ${SERVER_USER}@${SERVER_IP} sudo systemctl restart backend.service
         env:
