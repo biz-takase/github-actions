@@ -47,3 +47,30 @@ jobs:
           name: dist
           path: backend/dist/index.js
           retention-days: 5
+  # デプロイジョブ
+  deploy:
+    # 前job
+    needs: build
+    # pushイベントのときのみ実行
+    if: github.event_name == 'push'
+    # job実行ランナー
+    runs-on: ubuntu:latest
+    steps:
+      # Marketplaceから使用したactions
+      # このアクションを使用することでsshキーがインストールされ、各ステップでキーの指定が不要となる
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.BACKEND_SERVER_SSH_KEY }}
+          known_hosts: ${{ secrets.BACKEND_SERVER_KNOWN_HOSTS }}
+      # - run: ファイルアップロードのコマンド
+      # サービスリスタート
+      - run: ssh ${SERVER_USER}@${SERVER_IP} sudo systemctl restart backend.service
+        env:
+          SERVER_USER: ${{secrets.BACKEND_SERVER_USER}}
+          SERVER_IP: ${{secrets.BACKEND_SERVER_IP}}
+      # サービス状態
+      - run: ssh ${SERVER_USER}@${SERVER_IP} systemctl status backend.service
+        env:
+          SERVER_USER: ${{secrets.BACKEND_SERVER_USER}}
+          SERVER_IP: ${{secrets.BACKEND_SERVER_IP}}
