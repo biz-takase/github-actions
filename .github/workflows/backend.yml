@@ -57,6 +57,10 @@ jobs:
     # job実行ランナー
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: backend/dist
       # Marketplaceから使用したactions
       # このアクションを使用することでsshキーがインストールされ、各ステップでキーの指定が不要となる
       - name: Install SSH key
