@@ -17,6 +17,7 @@ defaults:
     working-directory: backend
 
 jobs:
+  # ビルド・テストフェーズ
   build:
     runs-on: ubuntu-latest
     steps:
@@ -54,7 +55,7 @@ jobs:
     # pushイベントのときのみ実行
     if: github.event_name == 'push'
     # job実行ランナー
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
       # Marketplaceから使用したactions
       # このアクションを使用することでsshキーがインストールされ、各ステップでキーの指定が不要となる
