@@ -70,7 +70,7 @@ jobs:
           known_hosts: ${{ secrets.BACKEND_SERVER_KNOWN_HOSTS }}
       # ファイルアップロードのコマンド
       # ランナーからscpでサーバーにファイルアップロード
-      - run: scp /home/runner/work/github-actions/github-actions/backend/dist/index.js ${SERVER_USER}@${SERVER_IP}:/home/ubuntu/src
+      - run: ssh ${SERVER_USER}@${SERVER_IP} scp /home/runner/work/github-actions/github-actions/backend/dist/index.js ${SERVER_USER}@${SERVER_IP}:/home/ubuntu/src
       # サービスリスタート
       - run: ssh ${SERVER_USER}@${SERVER_IP} sudo systemctl restart backend.service
         env:
