@@ -3,6 +3,8 @@
 
 name: frontend
 
+# ワークフロー（ジョブ）が実行される条件
+# masterブランチのpushイベントの際にワークフローのジョブが実行される
 on:
   push: 
     branches:
@@ -24,3 +26,5 @@ jobs:
       - run: aws s3 sync . s3://${BACKET_NAME} --exact-timestamps --region ap-northeast-1
         env:
           BACKET_NAME: ${{secrets.FRONTEND_BACKET_NAME}}
+          AWS_ACCESS_KEY_ID: ${{secrets.FRONTEND_ACCESS_KEY}}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.FRONTEND_SECRET_KEY}}
