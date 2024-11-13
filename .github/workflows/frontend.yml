@@ -32,10 +32,8 @@ jobs:
       # OpenID Connect を使用した認証
       - uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
         with:
-          role-to-assume: arn:aws:iam::${ACCOUNT_ID}:role/github-action-frontend-role
+          role-to-assume: arn:aws:iam::${{secrets.AWS_ACCOUNT_ID}}:role/github-action-frontend-role
           aws-region: ap-northeast-1
-        env:
-          ACCOUNT_ID: ${{secrets.AWS_ACCOUNT_ID}}
       # サービス状態
       - run: aws s3 sync . s3://${BACKET_NAME} --exact-timestamps --region ap-northeast-1
         env:
