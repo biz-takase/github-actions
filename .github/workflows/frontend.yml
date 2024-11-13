@@ -14,6 +14,10 @@ defaults:
   run:
     working-directory: frontend
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   # デプロイジョブ
   deploy:
@@ -22,9 +26,12 @@ jobs:
     steps:
       # pushしたgitの内容をチェックアウト
       - uses: actions/checkout@v3
+      # OpenID Connect を使用した認証
+      - uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
+        with:
+          role-to-assume: arn:aws:iam::889860443972:role/github-action-frontend-role
+          aws-region: ap-northeast-1
       # サービス状態
       - run: aws s3 sync . s3://${BACKET_NAME} --exact-timestamps --region ap-northeast-1
         env:
           BACKET_NAME: ${{secrets.FRONTEND_BACKET_NAME}}
-          AWS_ACCESS_KEY_ID: ${{secrets.FRONTEND_ACCESS_KEY}}
-          AWS_SECRET_ACCESS_KEY: ${{secrets.FRONTEND_SECRET_KEY}}
