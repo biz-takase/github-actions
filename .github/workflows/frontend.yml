@@ -1,0 +1,26 @@
+# yaml形式でgithub-actionの記述
+# yaml のインデントは基本スペース: 2
+
+name: frontend
+
+on:
+  push: 
+    branches:
+      - master
+
+defaults:
+  run:
+    working-directory: frontend
+
+jobs:
+  # デプロイジョブ
+  deploy:
+    # job実行ランナー
+    runs-on: ubuntu-latest
+    steps:
+      # pushしたgitの内容をチェックアウト
+      - uses: actions/checkout@v3
+      # サービス状態
+      - run: aws s3 sync . s3://${BACKET_NAME} --exact-timestamps --region ap-northeast-1
+        env:
+          BACKET_NAME: ${{secrets.FRONTEND_BACKET_NAME}}
