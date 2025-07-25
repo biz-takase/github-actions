@@ -1,0 +1,12 @@
+# yaml形式でgithub-actionの記述
+# yaml のインデントは基本スペース: 2
+
+name: backend
+
+description: echo action
+
+runs:
+  steps:
+    - name: echo
+    - run: echo 'echo action execute'
+
