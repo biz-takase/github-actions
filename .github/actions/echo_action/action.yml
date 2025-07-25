@@ -1,12 +1,18 @@
-# yaml形式でgithub-actionの記述
+# yaml形式でアクションのメタデータ構文の記述
 # yaml のインデントは基本スペース: 2
+# ファイル名は「action.yml」にする必要があるため、注意
 
 name: backend
 
 description: echo action
 
 runs:
+  # 複合アクションと定義 
+  using: "composite"
   steps:
-    - name: echo
+    - name: "name is echo action"
       run: echo 'echo action execute'
+      # ワークフローでは、省略できるが、compositeでは、shellは、省略できない
+      # npmの場合は、不要
+      shell: bash
 
