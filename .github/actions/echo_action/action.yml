@@ -13,6 +13,6 @@ runs:
     - name: "name is echo action"
       run: echo 'echo action execute'
       # ワークフローでは、省略できるが、compositeでは、shellは、省略できない
-      # npmの場合は、不要
+      # uses の場合は、不要でrun の場合は必要
       shell: bash
 
