@@ -8,5 +8,5 @@ description: echo action
 runs:
   steps:
     - name: echo
-    - run: echo 'echo action execute'
+      run: echo 'echo action execute'
 
